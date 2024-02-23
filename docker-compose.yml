@@ -5,12 +5,18 @@ services:
     build: .
     image: ghcr.io/tkaixiang/storeman-bot:latest
     restart: unless-stopped
-    network_mode: "host" 
+    networks:
+      - storeman-bot-v2_default
     secrets:
       - source: dotenv
         target: /app/.env
+    ports:
+      - "80:80"
+
   mongo:
     image: mongo:latest
+    networks:
+      - storeman-bot-v2_default
     volumes:
       - mongodb_data:/data/db
 
@@ -20,3 +26,7 @@ volumes:
 secrets:
   dotenv: 
     file: ./.env
+
+networks:
+  storeman-bot-v2_default:
+    external: true

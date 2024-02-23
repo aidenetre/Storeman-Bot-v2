@@ -4,7 +4,7 @@ let mongoClientObj: any;
 
 
 const open = async (): Promise<boolean> => {
-    let uri = "mongodb://localhost:27017"
+    let uri = "mongodb://172.27.0.3:27017"
     if (process.env.MONGODB_URI) {
         uri = process.env.MONGODB_URI
     }
